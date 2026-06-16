@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Universidades del Mundo</title>
+
+<style>
+
+/* =========================
+RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#dfe6ee;
+    color:#1f2937;
+    scroll-behavior:smooth;
+}
+
+/* =========================
+MENU
+========================= */
+
+.menu{
+    background:#1e3a5f;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    padding:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.4);
+}
+
+.menu ul{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    list-style:none;
+    flex-wrap:wrap;
+}
+
+.menu a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.menu a:hover{
+    color:#8ec5ff;
+}
+
+/* =========================
+HEADER
+========================= */
+
+.header{
+    background:linear-gradient(90deg,#1e3a5f,#3b82f6);
+    color:white;
+    text-align:center;
+    padding:60px 20px;
+}
+
+.header h1{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.header p{
+    font-size:18px;
+}
+
+/* =========================
+CONTENEDOR
+========================= */
+
+.contenedor{
+    max-width:1400px;
+    margin:auto;
+    padding:25px;
+}
+
+/* =========================
+SECCIONES
+========================= */
+
+.seccion{
+    margin-top:50px;
+}
+
+.seccion h2{
+    background:#334155;
+    color:white;
+    padding:15px;
+    border-left:8px solid #60a5fa;
+    margin-bottom:25px;
+    border-radius:5px;
+}
+
+/* =========================
+GRID UNIVERSIDADES
+========================= */
+
+.universidades-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+/* =========================
+CARDS
+========================= */
+
+.card{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.card-content p{
+    line-height:1.6;
+    margin-bottom:10px;
+}
+
+.info{
+    background:#f1f5f9;
+    padding:12px;
+    border-radius:6px;
+    margin-top:10px;
+}
+
+/* =========================
+FORMULARIO
+========================= */
+
+.formulario{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.formulario form{
+    display:grid;
+    gap:15px;
+}
+
+.formulario input,
+.formulario textarea,
+.formulario select{
+    padding:14px;
+    border:1px solid #94a3b8;
+    border-radius:6px;
+    font-size:15px;
+    background:#f8fafc;
+}
+
+/* =========================
+BOTONES EFECTO ONDA
+========================= */
+
+.boton-onda{
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(90deg,#2563eb,#1e40af);
+    color:white;
+    border:none;
+    padding:15px;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+    font-weight:bold;
+}
+
+.boton-onda:hover{
+    transform:scale(1.03);
+    background:linear-gradient(90deg,#3b82f6,#2563eb);
+}
+
+.boton-onda span{
+    position:absolute;
+    border-radius:50%;
+    transform:scale(0);
+    background:rgba(255,255,255,0.7);
+    animation:onda 0.6s linear;
+}
+
+@keyframes onda{
+    to{
+        transform:scale(4);
+        opacity:0;
+    }
+}
+
+/* =========================
+CURSOS
+========================= */
+
+.cursos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.curso{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.curso h3{
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+/* =========================
+FOOTER
+========================= */
+
+.footer{
+    background:#1e293b;
+    color:white;
+    text-align:center;
+    padding:25px;
+    margin-top:50px;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:700px){
+
+    .header h1{
+        font-size:28px;
+    }
+
+    .menu ul{
+        gap:15px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+MENU
+========================= -->
+
+<nav class="menu">
+
+<ul>
+<li><a href="#inicio">Inicio</a></li>
+<li><a href="#universidades">Universidades</a></li>
+<li><a href="#ubicaciones">Ubicaciones</a></li>
+<li><a href="#registro">Registro</a></li>
+<li><a href="#cursos">Cursos</a></li>
+</ul>
+
+</nav>
+
+<!-- =========================
+HEADER
+========================= -->
+
+<header class="header" id="inicio">
+
+<h1>UNIVERSIDADES DEL MUNDO</h1>
+
+<p>
+Información académica, ubicaciones y preparación universitaria
+</p>
+
+<br>
+
+<button class="boton-onda">
+Explorar Universidades
+</button>
+
+</header>
+
+<div class="contenedor">
+
+<!-- =========================
+UNIVERSIDADES
+========================= -->
+
+<section class="seccion" id="universidades">
+
+<h2>Universidades Destacadas</h2>
+
+<div class="universidades-grid">
+
+<!-- CARD 1 -->
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+<h3>Universidad de La Guajira</h3>
+
+<p>
+Universidad pública ubicada en Colombia enfocada en educación regional y desarrollo social.
+</p>
+
+<div class="info">
+<p><strong>Ubicación:</strong> Riohacha, Colombia</p>
+<p><strong>Fundación:</strong> 1977</p>
+<p><strong>Especialidades:</strong> Ingeniería, Salud</p>
+</div>
+
+<br>
+
+<button class="boton-onda">
+Ver Más
+</button>
+
+</div>
+</div>
+
+<!-- CARD 2 -->
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+<h3>University of East London</h3>
+
+<p>
+Institución británica reconocida por programas tecnológicos y de negocios.
+</p>
+
+<div class="info">
+<p><strong>Ubicación:</strong> Londres, Reino Unido</p>
+<p><strong>Fundación:</strong> 1898</p>
+<p><strong>Especialidades:</strong> Tecnología, Negocios</p>
+</div>
+
+<br>
+
+<button class="boton-onda">
+Ver Más
+</button>
+
+</div>
+</div>
+
+<!-- CARD 3 -->
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+<h3>Universidad Central de Venezuela</h3>
+
+<p>
+Una de las universidades más históricas e importantes de América Latina.
+</p>
+
+<div class="info">
+<p><strong>Ubicación:</strong> Caracas, Venezuela</p>
+<p><strong>Fundación:</strong> 1721</p>
+<p><strong>Especialidades:</strong> Medicina, Derecho</p>
+</div>
+
+<br>
+
+<button class="boton-onda">
+Ver Más
+</button>
+
+</div>
+</div>
+
+<!-- CARD 4 -->
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+<h3>Harvard University</h3>
+
+<p>
+Universidad líder mundial en investigación y educación superior.
+</p>
+
+<div class="info">
+<p><strong>Ubicación:</strong> Massachusetts, USA</p>
+<p><strong>Fundación:</strong> 1636</p>
+<p><strong>Especialidades:</strong> Derecho, Medicina</p>
+</div>
+
+<br>
+
+<button class="boton-onda">
+Ver Más
+</button>
+
+</div>
+</div>
+
+<!-- CARD 5 -->
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+<h3>MIT</h3>
+
+<p>
+Instituto tecnológico líder mundial en innovación y robótica.
+</p>
+
+<div class="info">
+<p><strong>Ubicación:</strong> Massachusetts, USA</p>
+<p><strong>Fundación:</strong> 1861</p>
+<p><strong>Especialidades:</strong> IA, Robótica</p>
+</div>
+
+<br>
+
+<button class="boton-onda">
+Ver Más
+</button>
+
+</div>
+</div>
+
+<!-- CARD 6 -->
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+<h3>Stanford University</h3>
+
+<p>
+Universidad reconocida por innovación tecnológica y emprendimiento.
+</p>
+
+<div class="info">
+<p><strong>Ubicación:</strong> California, USA</p>
+<p><strong>Fundación:</strong> 1885</p>
+<p><strong>Especialidades:</strong> Tecnología, Negocios</p>
+</div>
+
+<br>
+
+<button class="boton-onda">
+Ver Más
+</button>
+
+</div>
+</div>
+
+<!-- CARD 7 -->
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1576495199011-eb94736d05d6?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+<h3>UNAM</h3>
+
+<p>
+La universidad más importante de México y referente en Latinoamérica.
+</p>
+
+<div class="info">
+<p><strong>Ubicación:</strong> Ciudad de México</p>
+<p><strong>Fundación:</strong> 1910</p>
+<p><strong>Especialidades:</strong> Arquitectura, Medicina</p>
+</div>
+
+<br>
+
+<button class="boton-onda">
+Ver Más
+</button>
+
+</div>
+</div>
+
+<!-- CARD 8 -->
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1519452575417-564c1401ecc0?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+<h3>University of Oxford</h3>
+
+<p>
+La universidad más antigua del mundo angloparlante.
+</p>
+
+<div class="info">
+<p><strong>Ubicación:</strong> Reino Unido</p>
+<p><strong>Fundación:</strong> 1096</p>
+<p><strong>Especialidades:</strong> Ciencias, Política</p>
+</div>
+
+<br>
+
+<button class="boton-onda">
+Ver Más
+</button>
+
+</div>
+</div>
+
+<!-- CARD 9 -->
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1564981797816-1043664bf78d?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+<h3>University of Cambridge</h3>
+
+<p>
+Universidad líder en ciencias e investigación matemática.
+</p>
+
+<div class="info">
+<p><strong>Ubicación:</strong> Reino Unido</p>
+<p><strong>Fundación:</strong> 1209</p>
+<p><strong>Especialidades:</strong> Física, Matemáticas</p>
+</div>
+
+<br>
+
+<button class="boton-onda">
+Ver Más
+</button>
+
+</div>
+</div>
+
+<!-- CARD 10 -->
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+<h3>Universidad Nacional de Ingeniería</h3>
+
+<p>
+Institución reconocida por excelencia en ingeniería.
+</p>
+
+<div class="info">
+<p><strong>Ubicación:</strong> Lima, Perú</p>
+<p><strong>Fundación:</strong> 1876</p>
+<p><strong>Especialidades:</strong> Sistemas, Ingeniería Civil</p>
+</div>
+
+<br>
+
+<button class="boton-onda">
+Ver Más
+</button>
+
+</div>
+</div>
+
+<!-- CARD 11 -->
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+<h3>Yale University</h3>
+
+<p>
+Universidad reconocida por excelencia académica mundial.
+</p>
+
+<div class="info">
+<p><strong>Ubicación:</strong> Connecticut, USA</p>
+<p><strong>Fundación:</strong> 1701</p>
+<p><strong>Especialidades:</strong> Derecho, Medicina</p>
+</div>
+
+<br>
+
+<button class="boton-onda">
+Ver Más
+</button>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+UBICACIONES
+========================= -->
+
+<section class="seccion" id="ubicaciones">
+
+<h2>Ubicaciones</h2>
+
+<div class="curso">
+
+<ul style="line-height:2; margin-left:20px;">
+<li>Riohacha, Colombia</li>
+<li>Londres, Reino Unido</li>
+<li>Caracas, Venezuela</li>
+<li>Massachusetts, USA</li>
+<li>California, USA</li>
+<li>Ciudad de México</li>
+<li>Oxford, Reino Unido</li>
+<li>Cambridge, Reino Unido</li>
+<li>Lima, Perú</li>
+<li>Connecticut, USA</li>
+</ul>
+
+</div>
+
+</section>
+
+<!-- =========================
+FORMULARIO
+========================= -->
+
+<section class="seccion" id="registro">
+
+<h2>Registro / Iniciar Sesión</h2>
+
+<div class="formulario">
+
+<form>
+
+<input type="text" placeholder="Nombre completo" required>
+
+<input type="email" placeholder="Correo electrónico" required>
+
+<input type="tel" placeholder="Número celular" required>
+
+<input type="text" placeholder="Ciudad o país">
+
+<select>
+
+<option>Selecciona una carrera</option>
+<option>Ingeniería</option>
+<option>Medicina</option>
+<option>Derecho</option>
+<option>Arquitectura</option>
+<option>Administración</option>
+
+</select>
+
+<textarea rows="5" placeholder="Objetivos académicos"></textarea>
+
+<button type="submit" class="boton-onda">
+Crear Cuenta
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<!-- =========================
+CURSOS
+========================= -->
+
+<section class="seccion" id="cursos">
+
+<h2>Cursos de Preparación</h2>
+
+<div class="cursos">
+
+<div class="curso">
+
+<h3>Curso de Admisión</h3>
+
+<ul style="line-height:1.9; margin-left:20px;">
+<li>Matemáticas</li>
+<li>Razonamiento lógico</li>
+<li>Comprensión lectora</li>
+<li>Simuladores de examen</li>
+</ul>
+
+<br>
+
+<button class="boton-onda">
+Inscribirme
+</button>
+
+</div>
+
+<div class="curso">
+
+<h3>Curso Ingeniería</h3>
+
+<ul style="line-height:1.9; margin-left:20px;">
+<li>Física</li>
+<li>Cálculo</li>
+<li>Programación</li>
+<li>Álgebra</li>
+</ul>
+
+<br>
+
+<button class="boton-onda">
+Ver Curso
+</button>
+
+</div>
+
+<div class="curso">
+
+<h3>Curso Medicina</h3>
+
+<ul style="line-height:1.9; margin-left:20px;">
+<li>Biología</li>
+<li>Química</li>
+<li>Anatomía</li>
+<li>Laboratorios</li>
+</ul>
+
+<br>
+
+<button class="boton-onda">
+Más Información
+</button>
+
+</div>
+
+<div class="curso">
+
+<h3>Talleres Especializados</h3>
+
+<ul style="line-height:1.9; margin-left:20px;">
+<li>Orientación vocacional</li>
+<li>Técnicas de estudio</li>
+<li>Asesorías</li>
+<li>Preparación emocional</li>
+</ul>
+
+<br>
+
+<button class="boton-onda">
+Registrarme
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer class="footer">
+
+<p>
+Proyecto universitario moderno | Plataforma educativa internacional
+</p>
+
+</footer>
+
+<!-- =========================
+SCRIPT EFECTO ONDA
+========================= -->
+
+<script>
+
+const botones = document.querySelectorAll(".boton-onda");
+
+botones.forEach(boton => {
+
+    boton.addEventListener("click", function(e){
+
+        const circulo = document.createElement("span");
+
+        const tamaño = Math.max(this.clientWidth, this.clientHeight);
+
+        circulo.style.width = circulo.style.height = tamaño + "px";
+
+        circulo.style.left =
+        e.clientX - this.offsetLeft - tamaño/2 + "px";
+
+        circulo.style.top =
+        e.clientY - this.offsetTop - tamaño/2 + "px";
+
+        this.appendChild(circulo);
+
+        setTimeout(() => {
+            circulo.remove();
+        },600);
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
